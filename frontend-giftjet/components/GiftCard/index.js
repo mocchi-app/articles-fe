@@ -1,40 +1,36 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 
-const Card = ({ article }) => {
-  const imageUrl = article.image ? article.image.url : null;
-  const { price, brandName, description, btn, title, id, owner } = article;
-
+const GiftCard = ({ price, brandName, description }) => {
   return (
-    <Link href={{ pathname: `/articles/${article.slug}` }}>
-      <ArticleCard>
-        <ImgContainer imageUrl={imageUrl}>
-        </ImgContainer>
-        <CardMeta>
-          <TopSection>
-            <FlexContainer>
-              <GiftName>{title || ' '}</GiftName>
-              {price && <Price>{price}</Price>}
-            </FlexContainer>
-            {brandName && <Brand>{brandName}</Brand>}
-            {description && (
-              <Description>
-                <>
-                  {description} <strong>Read More</strong>
-                </>
-              </Description>
-            )}
-          </TopSection>
-          <Container>
-            <OwnerInfo>
-              <img src='/images/giftOwnerIcon.png' alt='gift' />
-              <OwnerName>Jane Cooper</OwnerName>
-            </OwnerInfo>
-            <ViewListBtn>Buy</ViewListBtn>
-          </Container>
-        </CardMeta>
-      </ArticleCard>
-    </Link>
+    <Card>
+      <ImgContainer>
+        <img src='' alt='' />
+      </ImgContainer>
+      <CardMeta>
+        <TopSection>
+          <FlexContainer>
+            <GiftName>Best Gifts for Men</GiftName>
+            {price && <Price>{price}</Price>}
+          </FlexContainer>
+          {brandName && <Brand>{brandName}</Brand>}
+          {description && (
+            <Description>
+              <>
+                {description} <strong>Read More</strong>
+              </>
+            </Description>
+          )}
+        </TopSection>
+
+        <Container>
+          <OwnerInfo>
+            <img src='/images/giftOwnerIcon.png' alt='gift' />
+            <OwnerName>Jane Cooper</OwnerName>
+          </OwnerInfo>
+          <ViewListBtn>View List</ViewListBtn>
+        </Container>
+      </CardMeta>
+    </Card>
   );
 };
 
@@ -75,7 +71,7 @@ const FlexContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ArticleCard = styled.div`
+const Card = styled.div`
   width: 300px;
   border: 1px solid #e7e6e6;
   border-radius: 0px 0px 8px 8px;
@@ -83,20 +79,16 @@ const ArticleCard = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  /* width: 300px; */
+  width: 300px;
   height: 300px;
-  border-bottom: 1px solid #e7e6e6;
-  background-image: ${props => `url(${props.imageUrl})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background: #ccc;
+
+  img {
+  }
 `;
 
 const CardMeta = styled.div`
   padding: 25px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
 `;
 
 const GiftName = styled.div`
@@ -129,7 +121,7 @@ const ViewListBtn = styled.a`
   background: #42cb83;
   border-radius: 60px;
   color: #fff;
-  padding: 6px 33px;
+  padding: 6px 15px;
   font-weight: bold;
   font-size: 15px;
   line-height: 20px;
@@ -137,4 +129,4 @@ const ViewListBtn = styled.a`
   text-transform: capitalize;
 `;
 
-export default Card;
+export default GiftCard;

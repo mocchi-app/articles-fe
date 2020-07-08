@@ -1,42 +1,50 @@
+import Head from 'next/head';
 import styled from 'styled-components';
-import Articles from 'components/articles';
-import Query from 'components/query';
-import ARTICLES_QUERY from '../apollo/queries/article/articles';
 
-const ArticlesPage = () => {
+import GiftCard from 'components/GiftCard';
+
+import styles from '../styles/home.module.scss';
+
+export default function Home() {
   return (
     <>
-      <Count>
-        <strong>$ 2, 234, 567,76</strong> bought with local guides
-      </Count>
+      <Head>
+        <title>Home</title>
+      </Head>
+      <section className={styles.homeMainPromo}>
+        <h1 className={styles.sectionTitle}>Find the perfect gift.</h1>
+        <p className={styles.sectionActionText}>
+          Shop gift guides with gurus, buy directly from brands.
+        </p>
+        <div className={styles.inputContainer}>
+          <input
+            type='text'
+            placeholder='Tell us who you’re gifting for'
+            className={styles.inputSearch}
+          />
+          <img src="/images/search-white.png" alt="search" className={styles.searchIcon} />
+        </div>
+      </section>
 
-      <HeaderImage />
-
-      <Query query={ARTICLES_QUERY}>
-        {({ data: { articles } }) => {
-          return <Articles articles={articles} />;
-        }}
-      </Query>
+      <CardsContainer className={styles.cardsSection}>
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+        <GiftCard />
+      </CardsContainer>
     </>
   );
-};
+}
 
-const HeaderImage = styled.div`
-  background-image: url('/images/articles-bg.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 510px;
-  margin-bottom: 70px;
+const CardsContainer = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 100px auto 120px auto;
 `;
-
-const Count = styled.div`
-  font-family: 'Noto Sans TC', sans-serif;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 25px;
-  color: #1e2e4f;
-  margin: 25px 0;
-  text-align: center;
-`;
-
-export default ArticlesPage;
